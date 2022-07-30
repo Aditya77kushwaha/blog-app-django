@@ -16,6 +16,7 @@ urlpatterns = [
     path("profile/", views.Profile1, name="profile"),
     path("edit_profile/", views.edit_profile, name="edit_profile"),
     path("user_profile/<int:myid>/", views.user_profile, name="user_profile"),
+    path("delete_profile/<int:id>/", views.delete, name="delete"),
     
 #    user authentication
     path("register/", views.Register, name="register"),

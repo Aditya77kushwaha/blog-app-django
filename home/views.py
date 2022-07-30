@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from .forms import ProfileForm, BlogPostForm
 from django.views.generic import UpdateView
 from django.contrib import messages
+from django.http import HttpResponse, HttpResponseRedirect
 
 
 def blogs(request):
@@ -92,6 +93,9 @@ def Register(request):
         password1 = request.POST['password1']
         password2 = request.POST['password2']
         
+        if User.objects.filter(username=username).exists():
+            return render(request, 'login.html')
+
         if password1 != password2:
             messages.error(request, "Passwords do not match.")
             return redirect('/register')
@@ -123,3 +127,9 @@ def Logout(request):
     logout(request)
     messages.success(request, "Successfully logged out")
     return redirect('/login')
+
+def delete(request,id):
+    user=Profile.objects.get(id=id)
+    logout(request)
+    user.delete()
+    return HttpResponseRedirect(reverse("/register"))
