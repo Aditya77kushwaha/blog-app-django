@@ -120,7 +120,7 @@ def Login(request):
             return redirect("/")
         else:
             messages.error(request, "Invalid Credentials")
-        return render(request, 'blog.html')   
+        return render(request, 'register.html')
     return render(request, "login.html")
 
 def Logout(request):
@@ -129,7 +129,7 @@ def Logout(request):
     return redirect('/login')
 
 def delete(request,id):
-    user=Profile.objects.get(id=id)
+    user=User.objects.get(id=id)
     logout(request)
     user.delete()
-    return HttpResponseRedirect(reverse("/register"))
+    return redirect("/register")
