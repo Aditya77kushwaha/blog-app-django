@@ -29,7 +29,9 @@ float: right;
             </div>
       </div>
       <br>
+      {% if post.image %}
       <img src="/media/{{post.image}}" alt="" height="250px" width="500px">
+      {% endif %}
       <br>
       <p>{{post.content}}.</p>
       <hr>
